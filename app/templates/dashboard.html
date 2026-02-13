@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowDesk Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <main>
+    <h1>FlowDesk — Business Operations Dashboard</h1>
+    <section class="grid">
+      <article><h3>Today's bookings</h3><p>{{ kpis.todays_bookings }}</p></article>
+      <article><h3>Upcoming bookings</h3><p>{{ kpis.upcoming }}</p></article>
+      <article><h3>Completed vs no-show</h3><p>{{ kpis.completed }} / {{ kpis.no_show }}</p></article>
+      <article><h3>New inquiries</h3><p>{{ kpis.new_inquiries }}</p></article>
+      <article><h3>Ongoing conversations</h3><p>{{ kpis.ongoing }}</p></article>
+      <article><h3>Unanswered messages</h3><p>{{ kpis.unanswered }}</p></article>
+      <article><h3>Forms pending / overdue / completed</h3><p>{{ kpis.pending_forms }} / {{ kpis.overdue_forms }} / {{ kpis.completed_forms }}</p></article>
+      <article><h3>Low stock items</h3><p>{{ kpis.low_stock_count }}</p></article>
+    </section>
+
+    <section>
+      <h2>Inventory Alerts</h2>
+      <ul>
+        {% for item in low_stock %}
+        <li>{{ item.name }} ({{ item.quantity }} left, threshold {{ item.low_threshold }})</li>
+        {% else %}
+        <li>No low-stock items.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key Alerts</h2>
+      <ul>
+        {% for alert in alerts %}
+        <li><a href="{{ alert.link }}">{{ alert.message }}</a></li>
+        {% else %}
+        <li>No active alerts.</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
