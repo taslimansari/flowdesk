@@ -1,0 +1,18 @@
+[project]
+name = "flowdesk"
+version = "0.1.0"
+description = "Unified operations platform prototype for service businesses"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn>=0.30.0",
+  "sqlalchemy>=2.0.0",
+  "pydantic>=2.8.0",
+  "python-multipart>=0.0.9",
+  "jinja2>=3.1.4"
+]
+
+[tool.uvicorn]
+factory = false
+host = "0.0.0.0"
+port = 8000
